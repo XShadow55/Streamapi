@@ -12,6 +12,6 @@ public interface EmployeeService {
     String max(Integer dep);
     String  min(Integer dep);
     Object[]  alldep(Integer dep);
-    Object[] list();
+
 
 }
