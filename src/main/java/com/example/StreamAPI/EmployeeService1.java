@@ -58,28 +58,6 @@ public class EmployeeService1 implements EmployeeService{
     public String max(Integer dep) {
         Map<String ,Integer> pp = new HashMap<>();
         people.stream().filter((people -> people.getDepartment() == dep)).forEach((Employee emploe) -> pp.put(emploe.toString1(),emploe.getSalary()));
-        return Collections.max(pp.keySet())+" "+pp.get(Collections.max(pp.keySet()));
-    }
 
-    @Override
-    public String min(Integer dep) {
-        Map<String ,Integer> pp = new HashMap<>();
-        people.stream().filter((people -> people.getDepartment() == dep)).forEach((Employee emploe) -> pp.put(emploe.getFirstName()+" "+emploe.getLastName(),emploe.getSalary()));
-        return Collections.min(pp.keySet())+" "+pp.get(Collections.min(pp.keySet()));
-
-    }
-
-    @Override
-    public Object[]  alldep(Integer dep) {
-        List<String> rr = new ArrayList<>();
-        if (dep == null){
-            people.forEach((Employee p) -> rr.add(p.toString()));
-        }
-        else {
-            people.stream().filter(people -> people.getDepartment() == dep).forEach((Employee p) -> rr.add(p.toString1()));
-        }
-
-        return rr.toArray();
-    }
 }
 

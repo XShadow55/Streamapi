@@ -23,23 +23,5 @@ public class EmployeeController {
     @GetMapping("/remove")
     public String  remove(@RequestParam String name,@RequestParam String lastname,Integer dep,Integer salary) {
         return servis.remove(name, lastname,dep,salary);
-    }
-    @GetMapping("/search")
-    public String  search(@RequestParam String name,@RequestParam String lastname,Integer dep,Integer salary) {
-        return servis.search(name, lastname,dep,salary);
-    }
-    @GetMapping("/max-salary")
-    public String max(@RequestParam Integer departmentId) {
-        return servis.max(departmentId);
-    }
-    @GetMapping("/min-salary")
-    public String min(@RequestParam Integer departmentId) {
-        return servis.min(departmentId);
-    }
-    @GetMapping("/all")
-    public Object[] all( Integer departmentId) {
-        return servis.alldep(departmentId);
-    }
-
 
 }
