@@ -1,60 +1,85 @@
 
-package com.example.peoples;
+package com.example.StreamAPI;
 
         import org.springframework.stereotype.Service;
 
-        import java.util.ArrayList;
-        import java.util.List;
+        import javax.swing.text.html.Option;
+        import java.util.*;
+        import java.util.stream.Stream;
+
 
 
 @Service
 public class EmployeeService1 implements EmployeeService{
-    int value = 10;
 
-    private final List<Employee> people = new ArrayList<>(List.of(new Employee("ee","dd"),new Employee("ff","bb")));
+
+     final List<Employee> people =  new ArrayList<>(List.of(
+             new Employee("Иван","Иванов",1,10000),
+             new Employee("Петя","Попов",1,10300),
+            new Employee("Максим","Бугров",2,14000)));
+
 
 
 
     @Override
-    public  Employee add(String name,String lastname)throws EmployeeStorageIsFullException,EmployeeAlreadyAddedException{
-        Employee a = new Employee(name,lastname);
-        if (people.size()>=value){
-            throw new EmployeeStorageIsFullException();
+    public  String  add(String name,String lastname,Integer dep,Integer salary){
+        Employee a = new Employee(name,lastname,dep,salary);
 
-        }
-        if (people.contains(a)){
-            throw new EmployeeAlreadyAddedException();
-        }
+
         people.add(a);
-        return a;
+        return a.toString1();
     }
     @Override
-    public  Employee remove(String name,String lastname)throws EmployeeNotFoundException{
-        Employee a = new Employee(name,lastname);
-        if (people.contains(a)){
+    public  String  remove(String name,String lastname,Integer dep,Integer salary) {
+        Employee a = new Employee(name, lastname, dep, salary);
+        if (people.contains(a)) {
             people.remove(a);
-            return a;
-
+            return a.toString1();
         }
-        throw new EmployeeNotFoundException();
-
+        return a.toString1();
     }
     @Override
-    public  Employee search(String name,String lastname)throws EmployeeNotFoundException{
-        Employee a = new Employee(name,lastname);
+    public  String  search (String name, String lastname,Integer dep,Integer salary){
+        Employee a = new Employee(name,lastname, dep, salary);
         if (!people.contains(a)){
-            throw new EmployeeNotFoundException();
+
         }
-        return a;
+        return a.toString1();
 
     }
     @Override
     public Object[] list(){
-        return people.toArray();
+        List<String> rr = new ArrayList<>();
+        people.forEach((Employee people) -> rr.add(people.toString()));
+        return rr.toArray();
     }
 
+    @Override
+    public String max(Integer dep) {
+        Map<String ,Integer> pp = new HashMap<>();
+        people.stream().filter((people -> people.getDepartment() == dep)).forEach((Employee emploe) -> pp.put(emploe.toString1(),emploe.getSalary()));
+        return Collections.max(pp.keySet())+" "+pp.get(Collections.max(pp.keySet()));
+    }
 
+    @Override
+    public String min(Integer dep) {
+        Map<String ,Integer> pp = new HashMap<>();
+        people.stream().filter((people -> people.getDepartment() == dep)).forEach((Employee emploe) -> pp.put(emploe.getFirstName()+" "+emploe.getLastName(),emploe.getSalary()));
+        return Collections.min(pp.keySet())+" "+pp.get(Collections.min(pp.keySet()));
 
+    }
 
+    @Override
+    public Object[]  alldep(Integer dep) {
+        List<String> rr = new ArrayList<>();
+        if (dep == null){
+            people.forEach((Employee p) -> rr.add(p.toString()));
+        }
+        else {
+            people.stream().filter(people -> people.getDepartment() == dep).forEach((Employee p) -> rr.add(p.toString1()));
+        }
+
+        return rr.toArray();
+    }
 }
 

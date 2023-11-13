@@ -1,4 +1,4 @@
-package com.example.peoples;
+package com.example.StreamAPI;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/department")
 public class EmployeeController {
 
     private EmployeeService servis;
@@ -17,20 +17,29 @@ public class EmployeeController {
 
 
     @GetMapping("/add")
-    public Employee add(@RequestParam String name,@RequestParam String lastname) {
-        return servis.add(name, lastname);
+    public String  add(@RequestParam String name,@RequestParam String lastname,Integer dep,Integer salary) {
+        return servis.add(name, lastname,dep,salary);
     }
     @GetMapping("/remove")
-    public Employee remove(@RequestParam String name,@RequestParam String lastname) {
-        return servis.remove(name, lastname);
+    public String  remove(@RequestParam String name,@RequestParam String lastname,Integer dep,Integer salary) {
+        return servis.remove(name, lastname,dep,salary);
     }
     @GetMapping("/search")
-    public Employee search(@RequestParam String name,@RequestParam String lastname) {
-        return servis.search(name, lastname);
+    public String  search(@RequestParam String name,@RequestParam String lastname,Integer dep,Integer salary) {
+        return servis.search(name, lastname,dep,salary);
     }
-    @GetMapping
-    public Object[] list(){
-        return servis.list();
+    @GetMapping("/max-salary")
+    public String max(@RequestParam Integer departmentId) {
+        return servis.max(departmentId);
     }
+    @GetMapping("/min-salary")
+    public String min(@RequestParam Integer departmentId) {
+        return servis.min(departmentId);
+    }
+    @GetMapping("/all")
+    public Object[] all( Integer departmentId) {
+        return servis.alldep(departmentId);
+    }
+
 
 }

@@ -1,49 +1,63 @@
-package com.example.peoples;
-
-import org.springframework.stereotype.Service;
-
-import java.util.Objects;
-
+package com.example.StreamAPI;
 
 public class Employee {
     private String firstName;
     private String lastName;
+    private String surName;
+    private int department;
+    private int salary;
+    private int id;
+    private static int count = 0;
 
-
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int department, int salary) {
         this.firstName = firstName;
         this.lastName = lastName;
 
+        this.department = department;
+        this.salary = salary;
+        id = count;
+        ++count;
+
     }
 
-
+    @Override
     public String toString() {
-        return " " + this.firstName + " " + this.lastName;
+        return   " " + firstName + " " + lastName  +" "+ department + " " + salary;
     }
 
+    public String toString1() {
+        return lastName + " " + firstName + " " + salary ;
+    }
 
     public String getFirstName() {
-        return this.firstName;
+        return firstName;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+    public String getSurName() {
+        return surName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName);
+    public void setDepartment(int department) {
+        this.department = department;
     }
 
-
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 }
-

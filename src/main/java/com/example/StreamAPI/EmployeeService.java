@@ -1,4 +1,4 @@
-package com.example.peoples;
+package com.example.StreamAPI;
 
 import org.springframework.stereotype.Service;
 
@@ -6,9 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface EmployeeService {
-    Employee add(String firstName,String lastName);
-    Employee remove(String firstName,String lastName);
-    Employee search(String firstName,String lastName);
+    String  add(String firstName, String lastName,Integer dep,Integer salary);
+    String  remove(String firstName,String lastName,Integer dep,Integer salary);
+    String  search(String firstName,String lastName,Integer dep,Integer salary);
+    String max(Integer dep);
+    String  min(Integer dep);
+    Object[]  alldep(Integer dep);
     Object[] list();
 
 }
