@@ -29,35 +29,3 @@ public class Employee {
         return lastName + " " + firstName + " " + salary ;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int getDepartment() {
-        return department;
-    }
-
-    public int getSalary() {
-        return salary;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getSurName() {
-        return surName;
-    }
-
-    public void setDepartment(int department) {
-        this.department = department;
-    }
-
-    public void setSalary(int salary) {
-        this.salary = salary;
-    }
-}
