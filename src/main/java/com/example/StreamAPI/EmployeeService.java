@@ -1,17 +1,18 @@
 package com.example.StreamAPI;
 
-import org.springframework.stereotype.Service;
+
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public interface EmployeeService {
-    String  add(String firstName, String lastName,Integer dep,Integer salary);
-    String  remove(String firstName,String lastName,Integer dep,Integer salary);
-    String  search(String firstName,String lastName,Integer dep,Integer salary);
-    String max(Integer dep);
-    String  min(Integer dep);
-    Object[]  alldep(Integer dep);
-    Object[] list();
+    Employee  add(String firstName, String lastName,Integer dep,Integer salary);
+    Employee  remove(String firstName,String lastName,Integer dep,Integer salary);
+    Employee  search(String firstName,String lastName,Integer dep,Integer salary);
+    Optional<Employee> max(Integer dep);
+    Optional<Employee> min(Integer dep);
+    List  alldep(Integer dep);
+
 
 }
