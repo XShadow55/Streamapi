@@ -3,11 +3,16 @@ package com.example.StreamAPI;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
+
 @Service
 public class EmployeeServisImp implements EmployeeService{
     private final List<Employee> people = new ArrayList<>(List.of( new Employee("ww","rr",1,10000),
             new Employee("ll","vv",1,15000),
-            new Employee("wt","rl",1,54000)));
+            new Employee("wt","rl",1,54000),
+            new Employee("ll","tv",2,150060),
+            new Employee("wt","il",2,54500)));
     @Override
     public Employee add(String firstName, String lastName, Integer dep, Integer salary) {
         Employee a = new Employee(firstName,lastName,dep,salary);
@@ -46,12 +51,17 @@ public class EmployeeServisImp implements EmployeeService{
 
 
     @Override
-    public List alldep(Integer dep) {
+    public Map alldep(Integer dep) {
+        Map<Integer,List<Employee>> peopleDep = people.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+        Map<Integer,List<Employee>> peopleDep1 = new HashMap<>();
+        peopleDep1.put(dep,peopleDep.get(dep));
+
         if (dep == null){
-            return List.of(people.toArray());
+            return peopleDep;
         }
         else {
-            return List.of(people.stream().filter(employee -> employee.getDepartment() == dep).toArray());
+            return peopleDep1;
         }
 
     }

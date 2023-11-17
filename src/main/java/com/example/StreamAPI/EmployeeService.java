@@ -4,6 +4,7 @@ package com.example.StreamAPI;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface EmployeeService {
@@ -12,7 +13,7 @@ public interface EmployeeService {
     Employee  search(String firstName,String lastName,Integer dep,Integer salary);
     Optional<Employee> max(Integer dep);
     Optional<Employee> min(Integer dep);
-    List  alldep(Integer dep);
+    Map alldep(Integer dep);
 
 
 }

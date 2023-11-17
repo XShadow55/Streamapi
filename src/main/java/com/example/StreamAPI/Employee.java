@@ -20,7 +20,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return " " + firstName + " " + lastName + " " + department + " " + salary;
+        return " " + firstName + " " + lastName  + " " + salary;
     }
 
     public String getFirstName() {
