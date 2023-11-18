@@ -46,7 +46,12 @@ public class EmployeeController {
 
     }
     @GetMapping("/all")
-    public Map all(Integer departmentId) {
+    public Map all() {
+        return servis.all();
+
+    }
+    @GetMapping(value = "/all",params = "departmentId")
+    public Map allDep(Integer departmentId) {
         return servis.alldep(departmentId);
 
     }

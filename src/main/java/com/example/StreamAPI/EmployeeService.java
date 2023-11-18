@@ -14,6 +14,7 @@ public interface EmployeeService {
     Optional<Employee> max(Integer dep);
     Optional<Employee> min(Integer dep);
     Map alldep(Integer dep);
+    Map all();
 
 
 }
