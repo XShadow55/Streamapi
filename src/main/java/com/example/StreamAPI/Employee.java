@@ -1,5 +1,9 @@
 package com.example.StreamAPI;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
+
 public class Employee {
     private String firstName;
     private String lastName;
@@ -9,8 +13,8 @@ public class Employee {
 
 
     public Employee(String firstName, String lastName, int department, int salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.department = department;
         this.salary = salary;
 

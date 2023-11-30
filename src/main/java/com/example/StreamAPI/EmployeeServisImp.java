@@ -1,5 +1,6 @@
 package com.example.StreamAPI;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,21 +17,24 @@ public class EmployeeServisImp implements EmployeeService{
 
             new Employee("wt","il",2,54500)));
     @Override
-    public Employee add(String firstName, String lastName, Integer dep, Integer salary) {
+    public Employee add(String firstName, String lastName, Integer dep, Integer salary) throws AlreadyAddedException {
+        chect(firstName,lastName);
         Employee a = new Employee(firstName,lastName,dep,salary);
         people.add(a);
         return a;
     }
 
     @Override
-    public Employee remove(String firstName, String lastName, Integer dep, Integer salary) {
+    public Employee remove(String firstName, String lastName, Integer dep, Integer salary) throws AlreadyAddedException{
+        chect(firstName,lastName);
         Employee a = new Employee(firstName,lastName,dep,salary);
         people.remove(a);
         return a;
     }
 
     @Override
-    public Employee search(String firstName, String lastName, Integer dep, Integer salary) {
+    public Employee search(String firstName, String lastName, Integer dep, Integer salary)throws AlreadyAddedException {
+        chect(firstName,lastName);
         Employee a = new Employee(firstName,lastName,dep,salary);
         if (people.contains(a)){
             return a;
@@ -55,7 +59,7 @@ public class EmployeeServisImp implements EmployeeService{
     @Override
     public Map alldep(Integer dep) {
         Map<Integer,List<Employee>> peopleDep = people.stream()
-                .filter(employee -> dep.equals(employee.getDepartment()))
+                .filter(employee -> dep == null || employee.getDepartment() == dep)
                 .collect(Collectors.groupingBy(Employee::getDepartment));
 
         return peopleDep;
@@ -72,6 +76,15 @@ public class EmployeeServisImp implements EmployeeService{
 
         return peopleDep;
 
+
+    }
+    private String getKey(String firstName, String lastName){
+        return (firstName +" "+ lastName);
+    }
+    private void chect (String firstName, String lastName)throws AlreadyAddedException{
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))){
+            throw new AlreadyAddedException();
+        }
 
     }
 
