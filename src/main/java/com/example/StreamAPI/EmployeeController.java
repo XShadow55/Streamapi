@@ -1,21 +1,19 @@
 package com.example.StreamAPI;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/department")
 public class EmployeeController {
 
-    private EmployeeService servis;
+    private DepartmentService servis;
 
-    public EmployeeController(EmployeeService servis) {
+    public EmployeeController(DepartmentService servis) {
         this.servis = servis;
 
     }
@@ -35,24 +33,29 @@ public class EmployeeController {
         return servis.search(name, lastname,dep,salary);
     }
 
-    @GetMapping("/max-salary")
-    public Optional<Employee> max(@RequestParam  Integer departmentId) {
-        return servis.max(departmentId);
+    @GetMapping("{id}/salary/max")
+    public Optional<Employee> max(@PathVariable  String  id) {
+        return servis.max(Integer.parseInt(id));
 
     }
-    @GetMapping("/min-salary")
-    public Optional<Employee> min(@RequestParam  Integer departmentId) {
-        return servis.min(departmentId);
+    @GetMapping("{id}/salary/min")
+    public Optional<Employee> min(@PathVariable  String  id) {
+        return servis.min(Integer.parseInt(id));
 
     }
-    @GetMapping("/all")
+    @GetMapping("/{id}/salary/sum")
+    public int sum(@PathVariable  String  id) {
+        return servis.sum(Integer.parseInt(id));
+
+    }
+    @GetMapping("/employees")
     public Map all() {
         return servis.all();
 
     }
-    @GetMapping(value = "/all",params = "departmentId")
-    public Map allDep(Integer departmentId) {
-        return servis.alldep(departmentId);
+    @GetMapping("{id}/employees")
+    public Map allDep(@PathVariable String  id) {
+        return servis.alldep(Integer.parseInt(id));
 
     }
 }

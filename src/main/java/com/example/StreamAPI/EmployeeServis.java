@@ -5,20 +5,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 @Service
-public class EmployeeServisImp implements EmployeeService{
-    private final List<Employee> people = new ArrayList<>(List.of(
-            new Employee("ll","tv",2,150060),
-            new Employee("ww","rr",1,10000),
-            new Employee("ll","vv",1,15000),
-            new Employee("wt","rl",1,54000),
-
-            new Employee("wt","il",2,54500)));
+public class EmployeeServis implements DepartmentService{
+    private final List<Employee> people = new ArrayList<>();
     @Override
     public Employee add(String firstName, String lastName, Integer dep, Integer salary) throws AlreadyAddedException {
-        chect(firstName,lastName);
+        if (chect(firstName,lastName) == false){
+            throw new AlreadyAddedException();
+        }
         Employee a = new Employee(firstName,lastName,dep,salary);
         people.add(a);
         return a;
@@ -53,6 +50,11 @@ public class EmployeeServisImp implements EmployeeService{
     public Optional<Employee> min(Integer dep) {
         return people.stream().filter(people -> people.getDepartment() == dep).min(Comparator.comparing(Employee::getSalary));
     }
+    @Override
+    public int sum(Integer dep) {
+        IntStream salary = people.stream().filter(people -> people.getDepartment() == dep).mapToInt(Employee::getSalary);
+        return salary.sum();
+    }
 
 
 
@@ -78,15 +80,27 @@ public class EmployeeServisImp implements EmployeeService{
 
 
     }
-    private String getKey(String firstName, String lastName){
-        return (firstName +" "+ lastName);
-    }
-    private void chect (String firstName, String lastName)throws AlreadyAddedException{
+
+    private boolean chect (String firstName, String lastName){
         if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))){
-            throw new AlreadyAddedException();
+            return false;
+
         }
 
+
+        return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeServis that = (EmployeeServis) o;
+        return Objects.equals(people, that.people);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(people);
+    }
 }
