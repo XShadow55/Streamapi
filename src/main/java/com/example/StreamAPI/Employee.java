@@ -13,8 +13,8 @@ public class Employee {
 
 
     public Employee(String firstName, String lastName, int department, int salary) {
-        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
-        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.department = department;
         this.salary = salary;
 

@@ -34,12 +34,12 @@ public class EmployeeController {
     }
 
     @GetMapping("{id}/salary/max")
-    public Optional<Employee> max(@PathVariable  String  id) {
+    public int max(@PathVariable  String  id) {
         return servis.max(Integer.parseInt(id));
 
     }
     @GetMapping("{id}/salary/min")
-    public Optional<Employee> min(@PathVariable  String  id) {
+    public int min(@PathVariable  String  id) {
         return servis.min(Integer.parseInt(id));
 
     }
@@ -54,7 +54,7 @@ public class EmployeeController {
 
     }
     @GetMapping("{id}/employees")
-    public Map allDep(@PathVariable String  id) {
+    public Employee allDep(@PathVariable String  id) {
         return servis.alldep(Integer.parseInt(id));
 
     }
