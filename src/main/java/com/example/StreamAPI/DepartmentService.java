@@ -1,19 +1,29 @@
 package com.example.StreamAPI;
 
-
-
-import java.util.Map;
+import java.util.Comparator;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
-public interface DepartmentService {
-    Employee  add(String firstName, String lastName,Integer dep,Integer salary);
-    Employee  remove(String firstName,String lastName,Integer dep,Integer salary);
-    Employee  search(String firstName,String lastName,Integer dep,Integer salary);
-    int max(Integer dep);
-    int min(Integer dep);
-    int sum(Integer dep);
-    Employee alldep(Integer dep);
-    Map all();
+public class DepartmentService implements InterfaceDepartmentService{
+    private final InterfaceService interfaceService;
+
+    public DepartmentService(InterfaceService interfaceService) {
+        this.interfaceService = interfaceService;
+    }
 
 
+    @Override
+    public Optional max(Integer dep) {
+        return interfaceService.alldep(dep).values().stream().max(Comparator.comparing(Employee::getSalary));
+    }
+
+    @Override
+    public Optional min(Integer dep) {
+        return interfaceService.alldep(dep).values().stream().max(Comparator.comparing(Employee::getSalary));
+    }
+    @Override
+    public int sum(Integer dep) {
+        return interfaceService.alldep(dep).values().stream().mapToInt(Employee::getSalary).sum();
+
+    }
 }

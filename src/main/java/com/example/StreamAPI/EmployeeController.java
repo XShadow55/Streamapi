@@ -2,18 +2,16 @@ package com.example.StreamAPI;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/department")
 public class EmployeeController {
 
-    private DepartmentService servis;
+    private InterfaceService servis;
 
-    public EmployeeController(DepartmentService servis) {
+    public EmployeeController(InterfaceService servis) {
         this.servis = servis;
 
     }
@@ -33,28 +31,13 @@ public class EmployeeController {
         return servis.search(name, lastname,dep,salary);
     }
 
-    @GetMapping("{id}/salary/max")
-    public int max(@PathVariable  String  id) {
-        return servis.max(Integer.parseInt(id));
-
-    }
-    @GetMapping("{id}/salary/min")
-    public int min(@PathVariable  String  id) {
-        return servis.min(Integer.parseInt(id));
-
-    }
-    @GetMapping("/{id}/salary/sum")
-    public int sum(@PathVariable  String  id) {
-        return servis.sum(Integer.parseInt(id));
-
-    }
     @GetMapping("/employees")
     public Map all() {
         return servis.all();
 
     }
     @GetMapping("{id}/employees")
-    public Employee allDep(@PathVariable String  id) {
+    public Map allDep(@PathVariable String  id) {
         return servis.alldep(Integer.parseInt(id));
 
     }

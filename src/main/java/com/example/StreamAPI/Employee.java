@@ -3,6 +3,7 @@ package com.example.StreamAPI;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public class Employee {
     private String firstName;
@@ -24,7 +25,7 @@ public class Employee {
 
     @Override
     public String toString() {
-        return " " + firstName + " " + lastName  + " " + salary;
+        return firstName + " " + lastName  + " " + salary;
     }
 
     public String getFirstName() {
@@ -35,13 +36,28 @@ public class Employee {
         return lastName;
     }
 
-    public int getDepartment() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return department == employee.department && salary == employee.salary && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, department, salary);
+    }
+
+    public  int getDepartment() {
         return department;
     }
 
     public int getSalary() {
         return salary;
     }
+
+
 }
 
 

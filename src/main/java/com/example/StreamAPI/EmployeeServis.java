@@ -9,16 +9,16 @@ import java.util.stream.IntStream;
 
 
 @Service
-public class EmployeeServis implements DepartmentService{
-    private final Map<Integer,Employee> peoples = new HashMap<>();
+public class EmployeeServis implements InterfaceService {
+    private final List<Employee> peoples = new ArrayList<>();
+
     @Override
     public Employee add(String firstName, String lastName, Integer dep, Integer salary) throws AlreadyAddedException {
         Employee a = new Employee(firstName,lastName,dep,salary);
-        if (peoples.containsValue(a)){
+        if (peoples.contains(a)){
             throw new AlreadyAddedException("Содрудник уже добавлен!");
         }
-
-        peoples.put(a.getDepartment(),a);
+        peoples.add(a);
         return a;
     }
 
@@ -26,7 +26,7 @@ public class EmployeeServis implements DepartmentService{
     public Employee remove(String firstName, String lastName, Integer dep, Integer salary) throws NotFoundException{
 
         Employee a = new Employee(firstName,lastName,dep,salary);
-        if (!peoples.containsValue(a)){
+        if (!peoples.contains(a)){
             throw new NotFoundException();
         }
         peoples.remove(a);
@@ -37,30 +37,32 @@ public class EmployeeServis implements DepartmentService{
     public Employee search(String firstName, String lastName, Integer dep, Integer salary)throws NotFoundException {
 
         Employee a = new Employee(firstName,lastName,dep,salary);
-        if (!peoples.containsValue(a)){
+        if (!peoples.contains(a)){
             throw new NotFoundException();
         }
         return a;
     }
 
-    @Override
-    public int max(Integer dep) {
-        return max(peoples.get(dep).getDepartment());
-    }
 
     @Override
-    public int min(Integer dep) {
-        return min(peoples.get(dep).getDepartment());}
-    @Override
-    public int sum(Integer dep) {
-        return sum(peoples.get(dep).getDepartment());
-    }
-    @Override
-    public Employee alldep(Integer dep) {
-        return peoples.get(dep);
+    public Map alldep(Integer dep) {
+        Map<Integer,List<Employee>> peopleDep = peoples.stream()
+                .filter(employee -> dep == null || employee.getDepartment() == dep)
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+
+        return peopleDep;
         }
     @Override
     public Map all() {
-        return peoples;
+        Map<Integer,List<Employee>> peopleDep = peoples.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+        return peopleDep;
+    }
+    private boolean check (String firstName, String lastName) {
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))) {
+            return false;
+
+        }
+        return true;
     }
 }
