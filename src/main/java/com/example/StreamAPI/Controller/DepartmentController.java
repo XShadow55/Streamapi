@@ -4,6 +4,8 @@ import com.example.StreamAPI.Interface.InterfaceDepartmentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Map;
+
 public class DepartmentController {
     private InterfaceDepartmentService servis;
 
@@ -26,6 +28,11 @@ public class DepartmentController {
     @GetMapping("/{id}/salary/sum")
     public int sum(@PathVariable  String  id) {
         return servis.sum(Integer.parseInt(id));
+
+    }
+    @GetMapping("{id}/employees")
+    public Map allDep(@PathVariable String  id) {
+        return servis.alldep(Integer.parseInt(id));
 
     }
 

@@ -37,9 +37,5 @@ public class EmployeeController {
         return servis.all();
 
     }
-    @GetMapping("{id}/employees")
-    public Map allDep(@PathVariable String  id) {
-        return servis.alldep(Integer.parseInt(id));
 
-    }
 }

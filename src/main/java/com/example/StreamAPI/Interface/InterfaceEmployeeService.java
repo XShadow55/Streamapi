@@ -11,7 +11,7 @@ public interface InterfaceEmployeeService {
     Employee  remove(String firstName,String lastName,Integer dep,Integer salary);
     Employee  search(String firstName,String lastName,Integer dep,Integer salary);
 
-    Map alldep(Integer dep);
+
     Map all();
 
 
