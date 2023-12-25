@@ -1,12 +1,13 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Interface;
 
 
+
+import com.example.StreamAPI.Model.Employee;
 
 import java.util.Map;
-import java.util.Optional;
 
-public interface InterfaceService {
-    Employee  add(String firstName, String lastName,Integer dep,Integer salary);
+public interface InterfaceEmployeeService {
+    Employee add(String firstName, String lastName, Integer dep, Integer salary);
     Employee  remove(String firstName,String lastName,Integer dep,Integer salary);
     Employee  search(String firstName,String lastName,Integer dep,Integer salary);
 

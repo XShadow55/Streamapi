@@ -1,9 +1,9 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Interface;
 
 import java.util.Optional;
 
 public interface InterfaceDepartmentService {
-    Optional max(Integer dep);
-    Optional min(Integer dep);
+    Object max(Integer dep);
+    Object min(Integer dep);
     int sum(Integer dep);
 }

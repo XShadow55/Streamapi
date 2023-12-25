@@ -1,4 +1,4 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Exeption;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

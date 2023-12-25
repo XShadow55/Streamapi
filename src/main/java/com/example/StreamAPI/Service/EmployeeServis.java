@@ -1,15 +1,17 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Service;
 
-import org.apache.commons.lang3.StringUtils;
+import com.example.StreamAPI.Model.Employee;
+import com.example.StreamAPI.Exeption.AlreadyAddedException;
+import com.example.StreamAPI.Exeption.NotFoundException;
+import com.example.StreamAPI.Interface.InterfaceEmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 
 @Service
-public class EmployeeServis implements InterfaceService {
+public class EmployeeServis implements InterfaceEmployeeService {
     private final List<Employee> peoples = new ArrayList<>();
 
     @Override
@@ -23,7 +25,7 @@ public class EmployeeServis implements InterfaceService {
     }
 
     @Override
-    public Employee remove(String firstName, String lastName, Integer dep, Integer salary) throws NotFoundException{
+    public Employee remove(String firstName, String lastName, Integer dep, Integer salary) throws NotFoundException {
 
         Employee a = new Employee(firstName,lastName,dep,salary);
         if (!peoples.contains(a)){
@@ -58,11 +60,5 @@ public class EmployeeServis implements InterfaceService {
                 .collect(Collectors.groupingBy(Employee::getDepartment));
         return peopleDep;
     }
-    private boolean check (String firstName, String lastName) {
-        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))) {
-            return false;
 
-        }
-        return true;
-    }
 }

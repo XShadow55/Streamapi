@@ -1,9 +1,8 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Controller;
 
+import com.example.StreamAPI.Interface.InterfaceDepartmentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.Optional;
 
 public class DepartmentController {
     private InterfaceDepartmentService servis;
@@ -15,12 +14,12 @@ public class DepartmentController {
 
 
     @GetMapping("{id}/salary/max")
-    public Optional max(@PathVariable String  id) {
+    public Object max(@PathVariable String  id) {
         return servis.max(Integer.parseInt(id));
 
     }
     @GetMapping("{id}/salary/min")
-    public Optional min(@PathVariable  String  id) {
+    public Object min(@PathVariable  String  id) {
         return servis.min(Integer.parseInt(id));
 
     }

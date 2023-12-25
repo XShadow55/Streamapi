@@ -1,8 +1,5 @@
-package com.example.StreamAPI;
+package com.example.StreamAPI.Model;
 
-import org.apache.commons.lang3.StringUtils;
-
-import java.util.Locale;
 import java.util.Objects;
 
 public class Employee {
