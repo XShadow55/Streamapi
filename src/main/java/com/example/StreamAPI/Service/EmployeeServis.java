@@ -48,7 +48,7 @@ public class EmployeeServis implements InterfaceEmployeeService {
 
 
     @Override
-    public Map all() {
+    public Map<Integer, List<Employee>> all() {
         Map<Integer,List<Employee>> peopleDep = peoples.stream()
                 .collect(Collectors.groupingBy(Employee::getDepartment));
         return peopleDep;

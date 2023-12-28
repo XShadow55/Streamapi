@@ -4,6 +4,7 @@ import com.example.StreamAPI.Model.Employee;
 import com.example.StreamAPI.Interface.InterfaceEmployeeService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -33,7 +34,7 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees")
-    public Map all() {
+    public Map<Integer, List<Employee>> all() {
         return servis.all();
 
     }

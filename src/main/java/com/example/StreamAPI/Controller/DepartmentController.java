@@ -1,9 +1,11 @@
 package com.example.StreamAPI.Controller;
 
 import com.example.StreamAPI.Interface.InterfaceDepartmentService;
+import com.example.StreamAPI.Model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 import java.util.Map;
 
 public class DepartmentController {
@@ -31,7 +33,7 @@ public class DepartmentController {
 
     }
     @GetMapping("{id}/employees")
-    public Map allDep(@PathVariable String  id) {
+    public Map<Integer, List<Employee>> allDep(@PathVariable String  id) {
         return servis.alldep(Integer.parseInt(id));
 
     }

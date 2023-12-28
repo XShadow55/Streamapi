@@ -37,7 +37,7 @@ public class DepartmentServiseTest {
         for(Employee employee: testList){
             test.put(employee.getDepartment(),employee);
         }
-        when(employeeServis.alldep(department)).thenReturn(test);
+        when(employeeServis.all()).thenReturn(test);
         Object max = departmentService.max(department);
         Assertions.assertEquals(maxSalary,max);
 
@@ -48,7 +48,7 @@ public class DepartmentServiseTest {
         for(Employee employee: testList){
             test.put(employee.getDepartment(),employee);
         }
-        when(employeeServis.alldep(department)).thenReturn(test);
+        when(employeeServis.all()).thenReturn(test);
         Object min = departmentService.min(department);
         Assertions.assertEquals(minSalary,min);
 

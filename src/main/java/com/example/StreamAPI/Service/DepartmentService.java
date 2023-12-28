@@ -20,7 +20,7 @@ public class DepartmentService implements InterfaceDepartmentService {
     @Override
     public Object max(Integer dep) {
         return interfaceEmployeeService.all().values().stream()
-                .filter((Employee employee) -> employee.getDepartment() == dep)
+                .filter( employee -> employee.getDepartment() == dep)
                 .max(Comparator.comparing(Employee::getSalary));
     }
 
@@ -39,9 +39,9 @@ public class DepartmentService implements InterfaceDepartmentService {
 
     }
     @Override
-    public Map alldep(Integer dep) {
+    public Map<Integer, List<Employee>> alldep(Integer dep) {
         Map<Integer, List<Employee>> peopleDep = interfaceEmployeeService.all().values().stream()
-                .filter((Employee employee) -> dep == null || employee.getDepartment() == dep)
+                .filter( employee -> dep == null || employee.getDepartment() == dep)
                 .collect(Collectors.groupingBy(Employee::getDepartment));
 
         return peopleDep;
