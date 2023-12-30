@@ -1,12 +1,11 @@
-package com.example.StreamAPI.Interface;
+package com.example.StreamAPI.service;
 
-import com.example.StreamAPI.Model.Employee;
+import com.example.StreamAPI.model.Employee;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-public interface InterfaceDepartmentService {
+public interface DepartmentService {
     Object max(Integer dep);
     Object min(Integer dep);
     int sum(Integer dep);
