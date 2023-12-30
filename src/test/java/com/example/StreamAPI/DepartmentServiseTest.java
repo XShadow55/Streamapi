@@ -1,8 +1,8 @@
 package com.example.StreamAPI;
 
-import com.example.StreamAPI.Model.Employee;
-import com.example.StreamAPI.Service.DepartmentService;
-import com.example.StreamAPI.Service.EmployeeServis;
+import com.example.StreamAPI.model.Employee;
+import com.example.StreamAPI.service.impl.DepartmentServiceImpl;
+import com.example.StreamAPI.service.impl.EmployeeServisImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +21,9 @@ public class DepartmentServiseTest {
     int maxSalary = 100_000;
     int minSalary = 10_000;
     @Mock
-    private EmployeeServis employeeServis;
+    private EmployeeServisImpl employeeServisImpl;
     @InjectMocks
-    private DepartmentService departmentService;
+    private DepartmentServiceImpl departmentServiceImpl;
     private List<Employee> testList = new ArrayList<>(){{
         add(new Employee("dd","dd1",1,10000));
         add(new Employee("dd","dd2",1,15000));
@@ -37,8 +37,8 @@ public class DepartmentServiseTest {
         for(Employee employee: testList){
             test.put(employee.getDepartment(),employee);
         }
-        when(employeeServis.all()).thenReturn(test);
-        Object max = departmentService.max(department);
+        when(employeeServisImpl.all()).thenReturn(test);
+        Object max = departmentServiceImpl.max(department);
         Assertions.assertEquals(maxSalary,max);
 
     }
@@ -48,8 +48,8 @@ public class DepartmentServiseTest {
         for(Employee employee: testList){
             test.put(employee.getDepartment(),employee);
         }
-        when(employeeServis.all()).thenReturn(test);
-        Object min = departmentService.min(department);
+        when(employeeServisImpl.all()).thenReturn(test);
+        Object min = departmentServiceImpl.min(department);
         Assertions.assertEquals(minSalary,min);
 
     }

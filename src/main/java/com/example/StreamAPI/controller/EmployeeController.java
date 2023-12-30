@@ -1,7 +1,7 @@
-package com.example.StreamAPI.Controller;
+package com.example.StreamAPI.controller;
 
-import com.example.StreamAPI.Model.Employee;
-import com.example.StreamAPI.Interface.InterfaceEmployeeService;
+import com.example.StreamAPI.model.Employee;
+import com.example.StreamAPI.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,9 +11,9 @@ import java.util.Map;
 @RequestMapping("/department")
 public class EmployeeController {
 
-    private InterfaceEmployeeService servis;
+    private EmployeeService servis;
 
-    public EmployeeController(InterfaceEmployeeService servis) {
+    public EmployeeController(EmployeeService servis) {
         this.servis = servis;
 
     }

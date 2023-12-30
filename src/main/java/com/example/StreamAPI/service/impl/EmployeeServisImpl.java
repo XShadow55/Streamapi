@@ -1,9 +1,9 @@
-package com.example.StreamAPI.Service;
+package com.example.StreamAPI.service.impl;
 
-import com.example.StreamAPI.Model.Employee;
-import com.example.StreamAPI.Exeption.AlreadyAddedException;
-import com.example.StreamAPI.Exeption.NotFoundException;
-import com.example.StreamAPI.Interface.InterfaceEmployeeService;
+import com.example.StreamAPI.model.Employee;
+import com.example.StreamAPI.exeption.AlreadyAddedException;
+import com.example.StreamAPI.exeption.NotFoundException;
+import com.example.StreamAPI.service.EmployeeService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class EmployeeServis implements InterfaceEmployeeService {
+public class EmployeeServisImpl implements EmployeeService {
     private final List<Employee> peoples = new ArrayList<>();
 
     @Override

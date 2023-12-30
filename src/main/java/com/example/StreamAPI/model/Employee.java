@@ -1,4 +1,4 @@
-package com.example.StreamAPI.Model;
+package com.example.StreamAPI.model;
 
 import java.util.Objects;
 

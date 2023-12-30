@@ -1,7 +1,7 @@
-package com.example.StreamAPI.Controller;
+package com.example.StreamAPI.controller;
 
-import com.example.StreamAPI.Interface.InterfaceDepartmentService;
-import com.example.StreamAPI.Model.Employee;
+import com.example.StreamAPI.service.DepartmentService;
+import com.example.StreamAPI.model.Employee;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Map;
 
 public class DepartmentController {
-    private InterfaceDepartmentService servis;
+    private DepartmentService servis;
 
-    public DepartmentController(InterfaceDepartmentService servis) {
+    public DepartmentController(DepartmentService servis) {
         this.servis = servis;
 
     }
