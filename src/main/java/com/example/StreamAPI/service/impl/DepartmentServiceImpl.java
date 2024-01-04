@@ -4,10 +4,7 @@ import com.example.StreamAPI.model.Employee;
 import com.example.StreamAPI.service.DepartmentService;
 import com.example.StreamAPI.service.EmployeeService;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.*;
 
 public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeService employeeService;
@@ -18,32 +15,27 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 
     @Override
-    public Object max(Integer dep) {
-        return employeeService.all().values().stream()
-                .filter( employee -> employee.getDepartment() == dep)
-                .max(Comparator.comparing(Employee::getSalary));
+    public int max(Integer dep) {
+
+         return employeeService.all().get(dep).stream()
+                 .mapToInt(Employee::getSalary).max().getAsInt()
+                 ;
     }
 
     @Override
-    public Object min(Integer dep) {
-        return employeeService.all().values().stream()
-                .filter((Employee employee) -> employee.getDepartment() == dep)
-                .max(Comparator.comparingInt(Employee::getSalary))
+    public int min(Integer dep) {
+        return employeeService.all().get(dep).stream()
+                .mapToInt(Employee::getSalary).min().getAsInt()
                 ;
     }
     @Override
     public int sum(Integer dep) {
-        return employeeService.all().values().stream()
-                .filter((Employee employee) -> employee.getDepartment() == dep)
+        return employeeService.all().get(dep).stream()
                 .mapToInt(Employee::getSalary).sum();
 
     }
     @Override
-    public Map<Integer, List<Employee>> alldep(Integer dep) {
-        Map<Integer, List<Employee>> peopleDep = employeeService.all().values().stream()
-                .filter( employee -> dep == null || employee.getDepartment() == dep)
-                .collect(Collectors.groupingBy(Employee::getDepartment));
-
-        return peopleDep;
+    public List<Employee> alldep(Integer dep) {
+        return employeeService.all().get(dep);
     }
 }

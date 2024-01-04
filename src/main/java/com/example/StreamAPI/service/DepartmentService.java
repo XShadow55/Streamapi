@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface DepartmentService {
-    Object max(Integer dep);
-    Object min(Integer dep);
+    int max(Integer dep);
+    int min(Integer dep);
     int sum(Integer dep);
-    Map<Integer, List<Employee>> alldep(Integer dep);
+    List<Employee> alldep(Integer dep);
 }

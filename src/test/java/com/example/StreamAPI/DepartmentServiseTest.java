@@ -18,8 +18,10 @@ import static org.mockito.Mockito.when;
 @ExtendWith(MockitoExtension.class)
 public class DepartmentServiseTest {
     int department = 1;
+
     int maxSalary = 100_000;
     int minSalary = 10_000;
+    int sum = maxSalary+minSalary+65000+15000;
     @Mock
     private EmployeeServisImpl employeeServisImpl;
     @InjectMocks
@@ -33,10 +35,8 @@ public class DepartmentServiseTest {
 
     @Test
     void maxSalaryTest(){
-        Map<Integer,Employee> test = new HashMap<>();
-        for(Employee employee: testList){
-            test.put(employee.getDepartment(),employee);
-        }
+        Map<Integer,List<Employee>> test = new HashMap<>();
+        test.put(1,testList);
         when(employeeServisImpl.all()).thenReturn(test);
         Object max = departmentServiceImpl.max(department);
         Assertions.assertEquals(maxSalary,max);
@@ -44,13 +44,27 @@ public class DepartmentServiseTest {
     }
     @Test
     void minSalaryTest(){
-        Map<Integer,Employee> test = new HashMap<>();
-        for(Employee employee: testList){
-            test.put(employee.getDepartment(),employee);
-        }
+        Map<Integer,List<Employee>> test = new HashMap<>();
+        test.put(1,testList);
         when(employeeServisImpl.all()).thenReturn(test);
         Object min = departmentServiceImpl.min(department);
         Assertions.assertEquals(minSalary,min);
 
+    }
+    @Test
+    void sumSalaryTest(){
+        Map<Integer,List<Employee>> test = new HashMap<>();
+        test.put(1,testList);
+        when(employeeServisImpl.all()).thenReturn(test);
+        int  summ = departmentServiceImpl.sum(department);
+        Assertions.assertEquals(sum,summ);
+    }
+    @Test
+    void allEmployeeTest(){
+        Map<Integer,List<Employee>> test = new HashMap<>();
+        test.put(1,testList);
+        when(employeeServisImpl.all()).thenReturn(test);
+        List  people = departmentServiceImpl.alldep(department);
+        Assertions.assertEquals(people,testList);
     }
 }

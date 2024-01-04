@@ -33,7 +33,7 @@ public class DepartmentController {
 
     }
     @GetMapping("{id}/employees")
-    public Map<Integer, List<Employee>> allDep(@PathVariable String  id) {
+    public List<Employee> allDep(@PathVariable String  id) {
         return servis.alldep(Integer.parseInt(id));
 
     }

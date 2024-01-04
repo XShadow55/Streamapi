@@ -4,6 +4,7 @@ package com.example.StreamAPI.service;
 
 import com.example.StreamAPI.model.Employee;
 
+import java.util.List;
 import java.util.Map;
 
 public interface EmployeeService {
@@ -12,7 +13,7 @@ public interface EmployeeService {
     Employee  search(String firstName,String lastName,Integer dep,Integer salary);
 
 
-    Map all();
+    Map<Integer,List<Employee>> all();
 
 
 }
